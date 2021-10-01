@@ -44,5 +44,11 @@ public class FilmService {
 		return this.repo.saveAndFlush(exists);
 	}
 	
+	//Delete
+	public Boolean delete(Long id ) {
+		Boolean bool = this.repo.existsById(id);
+		this.repo.deleteById(id);
+		return bool;
+	}
 	
 }
