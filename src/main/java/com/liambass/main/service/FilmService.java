@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 
 import com.liambass.main.repo.FilmRepo;
 
+import com.liambass.main.domain.Film;
+
 @Service
 public class FilmService {
 
@@ -14,5 +16,16 @@ public class FilmService {
 	public FilmService(FilmRepo repo) {
 		this.repo = repo;
 	}
+	
+	//Create
+	public Film create(Film f) {
+		return this.repo.saveAndFlush(f);
+	}
+	
+	
+	
+	
+	
+	
 	
 }
