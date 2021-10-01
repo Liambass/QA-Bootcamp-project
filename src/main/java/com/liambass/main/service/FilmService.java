@@ -34,6 +34,15 @@ public class FilmService {
 		return this.repo.findById(id).get();
 	}
 	
+	//Update
+	public Film update(Long id, Film f) {
+		Film exists = this.repo.findById(id).get();
+		exists.setTitle(f.getTitle());
+		exists.setGenre(f.getGenre());
+		exists.setYear(f.getYear());
+		exists.setDuration(f.getDuration());
+		return this.repo.saveAndFlush(exists);
+	}
 	
 	
 }

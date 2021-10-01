@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,6 +44,14 @@ public class FilmController {
 	public ResponseEntity<Film> readOne(@PathVariable Long id)	{
 		return new ResponseEntity<Film>(this.service.readCar(id), HttpStatus.OK);
 	}
+	
+	//Update
+	@PutMapping("/update/{id}") 
+	public ResponseEntity<Film> update(@PathVariable Long id, @RequestBody Film f) {
+		return new ResponseEntity<Film>(this.service.update(id, f), HttpStatus.OK);
+	}
+	
+	
 	
 	
 	
