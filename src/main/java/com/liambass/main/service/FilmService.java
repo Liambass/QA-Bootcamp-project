@@ -1,7 +1,6 @@
 package com.liambass.main.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +29,10 @@ public class FilmService {
 		return this.repo.findAll();
 	}
 	
-	
+	//Read by ID
+	public Film readCar(Long id) {
+		return this.repo.findById(id).get();
+	}
 	
 	
 	
