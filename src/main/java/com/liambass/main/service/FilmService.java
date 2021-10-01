@@ -1,5 +1,8 @@
 package com.liambass.main.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +25,10 @@ public class FilmService {
 		return this.repo.saveAndFlush(f);
 	}
 	
-	
+	//Read All
+	public List<Film> readAll() {
+		return this.repo.findAll();
+	}
 	
 	
 	
