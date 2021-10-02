@@ -43,7 +43,7 @@ public class FilmController {
 	//Read by ID
 	@GetMapping("/readOne/{id}")
 	public ResponseEntity<Film> readOne(@PathVariable Long id)	{
-		return new ResponseEntity<Film>(this.service.readCar(id), HttpStatus.OK);
+		return new ResponseEntity<Film>(this.service.readOne(id), HttpStatus.OK);
 	}
 	
 	//Update

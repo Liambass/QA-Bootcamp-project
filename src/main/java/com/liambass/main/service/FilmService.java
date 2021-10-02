@@ -30,7 +30,7 @@ public class FilmService {
 	}
 	
 	//Read by ID
-	public Film readCar(Long id) {
+	public Film readOne(Long id) {
 		return this.repo.findById(id).get();
 	}
 	
