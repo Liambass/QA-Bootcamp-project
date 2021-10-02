@@ -40,30 +40,7 @@ Integration test
 Full test suite
 <img src="https://user-images.githubusercontent.com/19336480/135731261-c783fa95-d2d1-45ce-a7b9-b40442d5a1b8.png" width="90%"></img> 
 
+--------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Evidence of persistent database
 <img src="https://user-images.githubusercontent.com/19336480/135731282-13c7755b-0075-467e-9c77-78585dfc770d.png" width="90%"></img> 
