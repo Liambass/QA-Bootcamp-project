@@ -28,6 +28,14 @@ public class Film {
 		this.duration = duration;
 	}
 	
+	public Film(Long id, String title, String genre, int year, int duration) {
+		this.id = id;
+		this.title = title;
+		this.genre = genre;
+		this.year = year;
+		this.duration = duration;
+	}
+
 	public Film() {
 	}
 
@@ -71,16 +79,6 @@ public class Film {
 		this.duration = duration;
 	}
 
-	@Override
-	public String toString() {
-		return "Film [id=" + id + ", title=" + title + ", genre=" + genre + ", year=" + year + ", duration=" + duration
-				+ "]";
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(duration, genre, id, title, year);
-	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -95,9 +93,4 @@ public class Film {
 				&& Objects.equals(title, other.title) && year == other.year;
 	}
 	
-	
-	
-	
-	
-
 }

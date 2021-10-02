@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS films CASCADE;
+CREATE TABLE films (
+    id INT AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    genre VARCHAR(255) NOT NULL,
+    year INT NOT NULL,
+    duration INT NOT NULL,
+    PRIMARY KEY (id)
+);
