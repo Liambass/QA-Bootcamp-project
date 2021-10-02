@@ -55,8 +55,8 @@ public class FilmController {
 	//Delete
     @DeleteMapping("/delete/{id}") 
     public ResponseEntity<Boolean> delete(@PathVariable Long id) {
-        return service.delete(id)? new ResponseEntity<>(HttpStatus.NO_CONTENT) : 
-        	new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	service.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 	
 	
