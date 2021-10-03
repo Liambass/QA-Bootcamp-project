@@ -1,12 +1,44 @@
 ## Why am I doing this?
 
-The purpose of this project is to demonstrate the knowledge and skills that I have gained during the DfE Skills bootcamp provided by qa. 
+The purpose of this project is to demonstrate the knowledge and skills that I have gained during the DfE Skills bootcamp provided by QA. 
 
 I shall be using the Spring Boot framework to build a Java application that that interfaces with a local MySQL relational database, a h2 in-memory database will be used for testing. 
 
 Project planning will be achieved using [this](https://liambass1.atlassian.net/jira/software/projects/QBP/boards/1) Jira board.
 
 --------------
+
+## How I expected the challenge to go...
+
+Overall I expected the challenge to go fairly smoothly as generally I have gained a fair understanding of the topics covered throughout this course, particularly in terms of actual coding. 
+
+--------------
+
+## What went well? What didn't?
+
+As anticipated, I found that the project went well. I wasn't entirely confident in crafting good user stories but ended up happy enough with what I achieved in that regard. I also had a little trouble with the jar build process but a quick bit of research cleared that up completely. 
+
+--------------
+
+## Usage 
+
+This application is intended for storing and manipulating data about films in a database.
+
+The database should be called "film_Collection" and should be on port 3306 (u/n: root, p/w: Root). 
+
+The application listens on port 9001, example API calls are shown below. 
+
+--------------
+
+## Possible future features!
+
+* More attributes held by the database
+* Custom queries
+* Custom exceptions
+* Implementation of Data Transfer Objects
+
+--------------
+ 
 
 ## API call examples 
 
