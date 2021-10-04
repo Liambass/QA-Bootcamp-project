@@ -95,4 +95,4 @@ public class FilmController {
     	return new ResponseEntity<List<Film>>(service.findByMaxDuration(duration), HttpStatus.OK);
     }
     
-}
+} 

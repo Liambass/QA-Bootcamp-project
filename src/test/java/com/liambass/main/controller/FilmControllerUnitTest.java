@@ -92,4 +92,64 @@ public class FilmControllerUnitTest {
 			.andExpect(status().isNoContent());
 	}
 	
-}
+	@Test
+	public void findByTitleTest() throws Exception {
+		String flAsJSON = this.mapper.writeValueAsString(fl);
+		Mockito.when(this.service.findByTitle("X")).thenReturn(fl);
+		
+		mvc.perform(get("/films/findByTitle/X"))
+		.andExpect(status().isOk())
+		.andExpect(content().json(flAsJSON));
+	}
+	
+	@Test
+	public void findByGenreTest() throws Exception {
+		String flAsJSON = this.mapper.writeValueAsString(fl);
+		Mockito.when(this.service.findByGenre("X")).thenReturn(fl);
+		
+		mvc.perform(get("/films/findByGenre/X"))
+		.andExpect(status().isOk())
+		.andExpect(content().json(flAsJSON));
+	}
+	
+	@Test
+	public void findByYearTest() throws Exception {
+		String flAsJSON = this.mapper.writeValueAsString(fl);
+		Mockito.when(this.service.findByYear(2000)).thenReturn(fl);
+		
+		mvc.perform(get("/films/findByYear/2000"))
+		.andExpect(status().isOk())
+		.andExpect(content().json(flAsJSON));
+	}
+	
+	@Test
+	public void findByYearRangeTest() throws Exception {
+		String flAsJSON = this.mapper.writeValueAsString(fl);
+		Mockito.when(this.service.findByYearRange(2000, 2020)).thenReturn(fl);
+		
+		mvc.perform(get("/films/findByYearRange/2000/2020"))
+		.andExpect(status().isOk())
+		.andExpect(content().json(flAsJSON));
+	}
+	
+	@Test
+	public void findByMaxDurationTest() throws Exception {
+		String flAsJSON = this.mapper.writeValueAsString(fl);
+		Mockito.when(this.service.findByMaxDuration(100)).thenReturn(fl);
+		
+		mvc.perform(get("/films/findByMaxDuration/100"))
+		.andExpect(status().isOk())
+		.andExpect(content().json(flAsJSON));
+	}
+	
+	@Test
+	public void findByMinDurationTest() throws Exception {
+		String flAsJSON = this.mapper.writeValueAsString(fl);
+		Mockito.when(this.service.findByMinDuration(100)).thenReturn(fl);
+		
+		mvc.perform(get("/films/findByMinDuration/100"))
+		.andExpect(status().isOk())
+		.andExpect(content().json(flAsJSON));
+	}
+	
+} 
