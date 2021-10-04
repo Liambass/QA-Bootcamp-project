@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import com.liambass.main.repo.FilmRepo;
 
 import com.liambass.main.domain.Film;
+import com.liambass.main.exceptions.IdNotFoundException;
+import com.liambass.main.exceptions.InvalidYearRangeException;
+import com.liambass.main.exceptions.NoMatchingRecordsException;
 
 @Service
 public class FilmService {
@@ -31,12 +34,12 @@ public class FilmService {
 	
 	//Read by ID
 	public Film readOne(Long id) {
-		return this.repo.findById(id).get();
+		return this.repo.findById(id).orElseThrow(IdNotFoundException::new);
 	}
 	
 	//Update
 	public Film update(Long id, Film f) {
-		Film exists = this.repo.findById(id).get();
+		Film exists = this.repo.findById(id).orElseThrow(IdNotFoundException::new);
 		exists.setTitle(f.getTitle());
 		exists.setGenre(f.getGenre());
 		exists.setYear(f.getYear());
@@ -46,38 +49,67 @@ public class FilmService {
 	
 	//Delete
 	public Boolean delete(Long id ) {
-		Boolean bool = this.repo.existsById(id);
+		if (!this.repo.existsById(id)) {
+			throw new IdNotFoundException();
+		};
 		this.repo.deleteById(id);
-		return bool;
+		return this.repo.existsById(id);
 	}
 	
 	//FindByTitle
 	public List<Film> findByTitle(String title) {
-		return this.repo.findByTitle(title);
+		List<Film> list = this.repo.findByTitle(title);
+		if (list.isEmpty()) {
+			throw new NoMatchingRecordsException();
+		}
+		return list;
 	}
 	
 	//FindByGenre
 	public List<Film> findByGenre(String genre) {
-		return this.repo.findByGenre(genre);
+		List<Film> list = this.repo.findByGenre(genre);
+		if (list.isEmpty()) {
+			throw new NoMatchingRecordsException();
+		}
+		return list;
 	}
 	
 	//FindByYear
 	public List<Film> findByYear(int year) {
-		return this.repo.findByYear(year);
+		List<Film> list = this.repo.findByYear(year);
+		if (list.isEmpty()) {
+			throw new NoMatchingRecordsException();
+		}
+		return list;
 	}
 	
 	//FindByYearRange
 	public List<Film> findByYearRange(int year1, int year2) {
-		return this.repo.findByYearRange(year1, year2);
+		if (year1 > year2) {
+			throw new InvalidYearRangeException();
+		}
+		List<Film> list = this.repo.findByYearRange(year1, year2);
+		if (list.isEmpty()) {
+			throw new NoMatchingRecordsException();
+		}
+		return list;
 	}
 	
 	//FindByMinDuration
 	public List<Film> findByMinDuration(int duration) {
-		return this.repo.findByMinDuration(duration);
+		List<Film> list = this.repo.findByMinDuration(duration);
+		if (list.isEmpty()) {
+			throw new NoMatchingRecordsException();
+		}
+		return list;
 	}
 	
 	//FindByMaxDuration
 	public List<Film> findByMaxDuration(int duration) {
-		return this.repo.findByMaxDuration(duration);
+		List<Film> list = this.repo.findByMaxDuration(duration);
+		if (list.isEmpty()) {
+			throw new NoMatchingRecordsException();
+		}
+		return list;
 	}
 }
