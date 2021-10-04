@@ -39,13 +39,13 @@ public class FilmControllerIntegrationTest {
 	private Film f1 = new Film(1L, "Test Film 1", "Genre", 2000, 90);
 	private Film f2 = new Film(2L, "Test Film 2", "Genre1", 2000, 120);
 	private Film f3 = new Film(3L, "Test Film 3", "Genre1", 2001, 99);
-	private Film fIn = new Film("New", "Genre", 2020, 20);
-	private Film fOut = new Film(4L, "New", "Genre", 2020, 20);
-	private Film f1Up = new Film(1L, "New", "Genre", 2020, 20);
 	private List<Film> fl = List.of(f1, f2, f3);
+	
 	
 	@Test
 	public void createTest() throws Exception {
+		Film fIn = new Film("New", "Genre", 2020, 20);
+		Film fOut = new Film(4L, "New", "Genre", 2020, 20);
 		String fInAsJSON = this.mapper.writeValueAsString(fIn);
 		String fOutAsJSON = this.mapper.writeValueAsString(fOut);
 		
@@ -77,6 +77,8 @@ public class FilmControllerIntegrationTest {
 	
 	@Test
 	public void updateTest() throws Exception {
+		Film fIn = new Film("New", "Genre", 2020, 20);
+		Film f1Up = new Film(1L, "New", "Genre", 2020, 20);
 		String fInAsJSON = this.mapper.writeValueAsString(fIn);
 		String f1UpAsJSON = this.mapper.writeValueAsString(f1Up);
 		
@@ -100,5 +102,60 @@ public class FilmControllerIntegrationTest {
 
 	}
 	
+	@Test
+	public void findByTitleTest() throws Exception {
+		String flAsJSON = this.mapper.writeValueAsString(fl);
+		
+		mvc.perform(get("/films/findByTitle/Test"))
+		.andExpect(status().isOk())
+		.andExpect(content().json(flAsJSON));
+	}
+	
+	@Test
+	public void findByGenreTest() throws Exception {
+		List<Film> flGenre = List.of(f2, f3);
+		String flGenreAsJSON = this.mapper.writeValueAsString(flGenre);
+		
+		mvc.perform(get("/films/findByGenre/Genre1"))
+		.andExpect(status().isOk())
+		.andExpect(content().json(flGenreAsJSON));
+	}
+	
+	@Test
+	public void findByYearTest() throws Exception {
+		List<Film> flYear = List.of(f1, f2);
+		String flYearAsJSON = this.mapper.writeValueAsString(flYear);
+		
+		mvc.perform(get("/films/findByYear/2000"))
+		.andExpect(status().isOk())
+		.andExpect(content().json(flYearAsJSON));
+	}
+	
+	@Test
+	public void findByYearRangeTest() throws Exception {
+		String flAsJSON = this.mapper.writeValueAsString(fl);
+		
+		mvc.perform(get("/films/findByYearRange/2000/2020"))
+		.andExpect(status().isOk())
+		.andExpect(content().json(flAsJSON));
+	}
+	
+	@Test
+	public void findByMaxDurationTest() throws Exception {
+		String flAsJSON = this.mapper.writeValueAsString(fl);
+		
+		mvc.perform(get("/films/findByMaxDuration/120"))
+		.andExpect(status().isOk())
+		.andExpect(content().json(flAsJSON));
+	}
+	
+	@Test
+	public void findByMinDurationTest() throws Exception {
+		String flAsJSON = this.mapper.writeValueAsString(fl);
+		
+		mvc.perform(get("/films/findByMinDuration/90"))
+		.andExpect(status().isOk())
+		.andExpect(content().json(flAsJSON));
+	}
 
 }
