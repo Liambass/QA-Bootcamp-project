@@ -57,20 +57,38 @@ Update a record in the database
 Delete a record in the database
 <img src="https://user-images.githubusercontent.com/19336480/135731280-c1474d79-6163-415f-b075-4242f49311f4.png" width="90%"></img> 
 
+Find films by title (requires v1.1+)
+<img src="https://user-images.githubusercontent.com/19336480/135852372-01538b25-7664-4036-98cf-3c39788efdcd.png" width="90%"></img> 
+
+Find films by genre (requires v1.1+)
+<img src="https://user-images.githubusercontent.com/19336480/135852366-9beded86-2e90-48ac-95ea-a1b99406a308.png" width="90%"></img> 
+
+Find films by year (requires v1.1+)
+<img src="https://user-images.githubusercontent.com/19336480/135852376-d347798b-fafd-4f16-a5e8-d3edd92c6638.png" width="90%"></img> 
+
+Find films by year range (requires v1.1+)
+<img src="https://user-images.githubusercontent.com/19336480/135852379-1d9eb1e6-77ad-4917-a51d-117bba2d6a02.png" width="90%"></img> 
+
+Find films by minimum duration (requires v1.1+)
+<img src="https://user-images.githubusercontent.com/19336480/135852370-80f38a34-e4fe-4c59-ac5c-a53081d80f6c.png" width="90%"></img> 
+
+Find films by maximum duration (requires v1.1+)
+<img src="https://user-images.githubusercontent.com/19336480/135852369-2e84540d-c2fc-4736-a640-e758466b5c3f.png" width="90%"></img> 
+
 --------------
 
 ## Test Results
-Service layer unit test
-<img src="https://user-images.githubusercontent.com/19336480/135731260-9a0bdb18-ef08-4ce6-a117-c31339234aa2.png" width="90%"></img> 
+Service layer unit test v1.1
+<img src="https://user-images.githubusercontent.com/19336480/135853762-fea804c1-c89a-46bb-8172-c3cc8c2179a3.png" width="90%"></img> 
 
-Controller layer unit test
-<img src="https://user-images.githubusercontent.com/19336480/135731259-32ae1fce-e5b9-47ab-bfd4-23a2d158933d.png" width="90%"></img> 
+Controller layer unit test v1.1 
+<img src="https://user-images.githubusercontent.com/19336480/135853776-caf652f6-07bb-4198-86e5-cb9cb3112bb1.png" width="90%"></img>
 
-Integration test
-<img src="https://user-images.githubusercontent.com/19336480/135731258-a7fc7573-6dc3-482b-87b2-d640d8a9e3ee.png" width="90%"></img> 
+Integration test v1.1 
+<img src="https://user-images.githubusercontent.com/19336480/135853781-cc248a4f-59d0-4b43-bcf5-924460ae68f8.png" width="90%"></img>
 
-Full test suite
-<img src="https://user-images.githubusercontent.com/19336480/135731261-c783fa95-d2d1-45ce-a7b9-b40442d5a1b8.png" width="90%"></img> 
+Full test suite v1.1 
+<img src="https://user-images.githubusercontent.com/19336480/135853787-465710ad-a137-437f-a19a-06579391f166.png" width="90%"></img>
 
 --------------
 
