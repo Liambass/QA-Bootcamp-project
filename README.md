@@ -1,3 +1,23 @@
+## Versions:
+The first merge from the dev branch to main included a v1.0 jar build. Along with the documentation added in the second push to main this makes the minimum viable product of the project, meeting all points of the deliverables checklist.
+
+The next merge to main delivers build v1.1 with all necessary documentation. This build adds the stretch goal of custom queries.
+
+The next merge to main delivers build v1.2 with all necessary documentation. This build adds the stretch goal of custom exceptions.
+ 
+
+--------------
+
+## Usage 
+
+This application is intended for storing and manipulating data about films in a database.
+
+The database should be called "film_Collection" and should be on port 3306 (u/n: root, p/w: Root). 
+
+The application listens on port 9001, example API calls are shown below.
+
+--------------
+
 ## Why am I doing this?
 
 The purpose of this project is to demonstrate the knowledge and skills that I have gained during the DfE Skills bootcamp provided by QA. 
@@ -20,21 +40,11 @@ As anticipated, I found that the project went well. I wasn't entirely confident 
 
 --------------
 
-## Usage 
-
-This application is intended for storing and manipulating data about films in a database.
-
-The database should be called "film_Collection" and should be on port 3306 (u/n: root, p/w: Root). 
-
-The application listens on port 9001, example API calls are shown below. 
-
---------------
-
 ## Possible future features!
 
 * More attributes held by the database
-* Custom queries
-* Custom exceptions
+* ~~Custom queries~~ Implemented in v1.1
+* ~~Custom exceptions~~ Implemented in v1.2
 * Implementation of Data Transfer Objects
 
 --------------
@@ -78,17 +88,19 @@ Find films by maximum duration (requires v1.1+)
 --------------
 
 ## Test Results
-Service layer unit test v1.1
-<img src="https://user-images.githubusercontent.com/19336480/135853762-fea804c1-c89a-46bb-8172-c3cc8c2179a3.png" width="90%"></img> 
+Service layer unit test v1.2
+<img src="https://user-images.githubusercontent.com/19336480/135895553-47779e8a-acd2-4308-95a2-2b70f45c8e13.png" width="90%"></img> 
 
-Controller layer unit test v1.1 
-<img src="https://user-images.githubusercontent.com/19336480/135853776-caf652f6-07bb-4198-86e5-cb9cb3112bb1.png" width="90%"></img>
+Controller layer unit test v1.2
+<img src="https://user-images.githubusercontent.com/19336480/135895577-91392c97-4d6c-4a49-9c6c-605043d2dfea.png" width="90%"></img> 
 
-Integration test v1.1 
-<img src="https://user-images.githubusercontent.com/19336480/135853781-cc248a4f-59d0-4b43-bcf5-924460ae68f8.png" width="90%"></img>
+Integration test v1.2 
+<img src="https://user-images.githubusercontent.com/19336480/135895586-1be495b6-618c-4a3e-8efb-3692937366ba.png" width="90%"></img> 
 
-Full test suite v1.1 
-<img src="https://user-images.githubusercontent.com/19336480/135853787-465710ad-a137-437f-a19a-06579391f166.png" width="90%"></img>
+Full test suite v1.2
+<img src="https://user-images.githubusercontent.com/19336480/135895595-62bc0f4d-a4d9-4589-8581-c404706c4240.png" width="90%"></img> 
+
+Test results for previous versions can be found in the documentation folder.
 
 --------------
 
