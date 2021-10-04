@@ -60,4 +60,39 @@ public class FilmServiceUnitTest {
 		assertEquals(true, this.service.delete(id));
 	}
 	
-}
+	@Test
+	public void findByTitleTest() {
+		Mockito.when(this.repo.findByTitle("X")).thenReturn(fl);
+		assertEquals(fl, this.service.findByTitle("X"));
+	}
+	
+	@Test
+	public void findByGenreTest() {
+		Mockito.when(this.repo.findByGenre("X")).thenReturn(fl);
+		assertEquals(fl, this.service.findByGenre("X"));
+	}
+	
+	@Test
+	public void findByYearTest() {
+		Mockito.when(this.repo.findByYear(2000)).thenReturn(fl);
+		assertEquals(fl, this.service.findByYear(2000));
+	}
+	
+	@Test
+	public void findByYearRangeTest() {
+		Mockito.when(this.repo.findByYearRange(2000, 2020)).thenReturn(fl);
+		assertEquals(fl, this.service.findByYearRange(2000, 2020));
+	}
+	
+	@Test
+	public void findByMinDurationTest() {
+		Mockito.when(this.repo.findByMinDuration(100)).thenReturn(fl);
+		assertEquals(fl, this.service.findByMinDuration(100));
+	}
+	
+	@Test
+	public void findByMaxDurationTest() {
+		Mockito.when(this.repo.findByMaxDuration(100)).thenReturn(fl);
+		assertEquals(fl, this.service.findByMaxDuration(100));
+	}
+} 
