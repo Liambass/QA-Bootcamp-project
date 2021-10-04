@@ -1,5 +1,6 @@
 package com.liambass.main.controller;
 
+import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -22,6 +23,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liambass.main.domain.Film;
+import com.liambass.main.exceptions.IdNotFoundException;
+import com.liambass.main.exceptions.InvalidYearRangeException;
+import com.liambass.main.exceptions.NoMatchingRecordsException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -76,6 +80,12 @@ public class FilmControllerIntegrationTest {
 	}
 	
 	@Test
+	public void readOneFailTest() throws Exception {
+		mvc.perform(get("/films/readOne/10"))
+		.andExpect(result -> assertTrue(result.getResolvedException() instanceof IdNotFoundException));
+	}
+	
+	@Test
 	public void updateTest() throws Exception {
 		Film fIn = new Film("New", "Genre", 2020, 20);
 		Film f1Up = new Film(1L, "New", "Genre", 2020, 20);
@@ -90,16 +100,27 @@ public class FilmControllerIntegrationTest {
 	}
 	
 	@Test
+	public void updateFailTest() throws Exception {
+		Film fIn = new Film("New", "Genre", 2020, 20);
+		String fInAsJSON = this.mapper.writeValueAsString(fIn);
+		
+		mvc.perform(put("/films/update/10")
+			.contentType(MediaType.APPLICATION_JSON)
+			.content(fInAsJSON))
+			.andExpect(result -> assertTrue(result.getResolvedException() instanceof IdNotFoundException));
+	}
+	
+	@Test
 	public void deleteTest() throws Exception {
 		mvc.perform(delete("/films/delete/1"))
 			.andExpect(status().isNoContent());
 
 	}
 	
-	@Test (expected = Exception.class)
+	@Test
 	public void deleteTestFail() throws Exception {
-		mvc.perform(delete("/films/delete/10"));
-
+		mvc.perform(delete("/films/delete/10"))
+			.andExpect(result -> assertTrue(result.getResolvedException() instanceof IdNotFoundException));
 	}
 	
 	@Test
@@ -107,8 +128,14 @@ public class FilmControllerIntegrationTest {
 		String flAsJSON = this.mapper.writeValueAsString(fl);
 		
 		mvc.perform(get("/films/findByTitle/Test"))
-		.andExpect(status().isOk())
-		.andExpect(content().json(flAsJSON));
+			.andExpect(status().isOk())
+			.andExpect(content().json(flAsJSON));
+	}
+	
+	@Test
+	public void findByTitleFailTest() throws Exception {
+		mvc.perform(get("/films/findByTitle/Fail"))
+			.andExpect(result -> assertTrue(result.getResolvedException() instanceof NoMatchingRecordsException));
 	}
 	
 	@Test
@@ -122,6 +149,12 @@ public class FilmControllerIntegrationTest {
 	}
 	
 	@Test
+	public void findByGenreFailTest() throws Exception {
+		mvc.perform(get("/films/findByGenre/Fail"))
+			.andExpect(result -> assertTrue(result.getResolvedException() instanceof NoMatchingRecordsException));
+	}
+	
+	@Test
 	public void findByYearTest() throws Exception {
 		List<Film> flYear = List.of(f1, f2);
 		String flYearAsJSON = this.mapper.writeValueAsString(flYear);
@@ -129,6 +162,12 @@ public class FilmControllerIntegrationTest {
 		mvc.perform(get("/films/findByYear/2000"))
 		.andExpect(status().isOk())
 		.andExpect(content().json(flYearAsJSON));
+	}
+	
+	@Test
+	public void findByYearFailTest() throws Exception {
+		mvc.perform(get("/films/findByYear/1990"))
+			.andExpect(result -> assertTrue(result.getResolvedException() instanceof NoMatchingRecordsException));
 	}
 	
 	@Test
@@ -141,6 +180,18 @@ public class FilmControllerIntegrationTest {
 	}
 	
 	@Test
+	public void findByYearRangeFailTest() throws Exception {
+		mvc.perform(get("/films/findByYearRange/1990/1991"))
+			.andExpect(result -> assertTrue(result.getResolvedException() instanceof NoMatchingRecordsException));
+	}
+	
+	@Test
+	public void findByYearRangeInvalidTest() throws Exception {
+		mvc.perform(get("/films/findByYearRange/1991/1990"))
+			.andExpect(result -> assertTrue(result.getResolvedException() instanceof InvalidYearRangeException));
+	}
+	
+	@Test
 	public void findByMaxDurationTest() throws Exception {
 		String flAsJSON = this.mapper.writeValueAsString(fl);
 		
@@ -150,12 +201,24 @@ public class FilmControllerIntegrationTest {
 	}
 	
 	@Test
+	public void findByMaxDurationFailTest() throws Exception {
+		mvc.perform(get("/films/findByMaxDuration/10"))
+			.andExpect(result -> assertTrue(result.getResolvedException() instanceof NoMatchingRecordsException));
+	}
+	
+	@Test
 	public void findByMinDurationTest() throws Exception {
 		String flAsJSON = this.mapper.writeValueAsString(fl);
 		
 		mvc.perform(get("/films/findByMinDuration/90"))
 		.andExpect(status().isOk())
 		.andExpect(content().json(flAsJSON));
+	}
+	
+	@Test
+	public void findByMinDurationFailTest() throws Exception {
+		mvc.perform(get("/films/findByMinDuration/1000"))
+			.andExpect(result -> assertTrue(result.getResolvedException() instanceof NoMatchingRecordsException));
 	}
 
 }
