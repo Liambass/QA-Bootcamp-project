@@ -59,5 +59,40 @@ public class FilmController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 	
+    //FindByTitle
+    @GetMapping("/findByTitle/{title}")
+    public ResponseEntity<List<Film>> findByTitle(@PathVariable String title) {
+    	return new ResponseEntity<List<Film>>(service.findByTitle(title), HttpStatus.OK);
+    }
 	
+	//FindByGenre
+    @GetMapping("/findByGenre/{genre}")
+    public ResponseEntity<List<Film>> findByGenre(@PathVariable String genre) {
+    	return new ResponseEntity<List<Film>>(service.findByGenre(genre), HttpStatus.OK);
+    }
+    
+	//FindByYear
+    @GetMapping("/findByYear/{year}")
+    public ResponseEntity<List<Film>> findByYear(@PathVariable int year) {
+    	return new ResponseEntity<List<Film>>(service.findByYear(year), HttpStatus.OK);
+    }
+    
+	//FindByYearRange
+    @GetMapping("/findByYearRange/{year1}/{year2}")
+    public ResponseEntity<List<Film>> findByYearRange(@PathVariable int year1, @PathVariable int year2) {
+    	return new ResponseEntity<List<Film>>(service.findByYearRange(year1, year2), HttpStatus.OK);
+    }
+    
+	//FindByMinDuration
+    @GetMapping("/findByMinDuration/{duration}")
+    public ResponseEntity<List<Film>> findByMinDuration(@PathVariable int duration) {
+    	return new ResponseEntity<List<Film>>(service.findByMinDuration(duration), HttpStatus.OK);
+    }
+    
+	//FindByMaxDuration
+    @GetMapping("/findByMaxDuration/{duration}")
+    public ResponseEntity<List<Film>> findByMaxDuration(@PathVariable int duration) {
+    	return new ResponseEntity<List<Film>>(service.findByMaxDuration(duration), HttpStatus.OK);
+    }
+    
 }
