@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.liambass.main.domain.Film;
+import com.liambass.main.dto.FilmDTO;
 import com.liambass.main.service.FilmService;
 
 @RestController
@@ -30,26 +30,26 @@ public class FilmController {
 	
 	//Create
 	@PostMapping("/create")
-	public ResponseEntity<Film> create(@RequestBody Film f) {
-		return new ResponseEntity<Film>(service.create(f),HttpStatus.CREATED);
+	public ResponseEntity<FilmDTO> create(@RequestBody FilmDTO f) {
+		return new ResponseEntity<FilmDTO>(service.create(f),HttpStatus.CREATED);
 	}
 	
 	//Read all
 	@GetMapping("/readAll")
-	public ResponseEntity<List<Film>> readAll() {
-		return new ResponseEntity<List<Film>>(service.readAll(), HttpStatus.OK);
+	public ResponseEntity<List<FilmDTO>> readAll() {
+		return new ResponseEntity<List<FilmDTO>>(service.readAll(), HttpStatus.OK);
 	}
 	
 	//Read by ID
 	@GetMapping("/readOne/{id}")
-	public ResponseEntity<Film> readOne(@PathVariable Long id)	{
-		return new ResponseEntity<Film>(this.service.readOne(id), HttpStatus.OK);
+	public ResponseEntity<FilmDTO> readOne(@PathVariable Long id)	{
+		return new ResponseEntity<FilmDTO>(this.service.readOne(id), HttpStatus.OK);
 	}
 	
 	//Update
 	@PutMapping("/update/{id}") 
-	public ResponseEntity<Film> update(@PathVariable Long id, @RequestBody Film f) {
-		return new ResponseEntity<Film>(this.service.update(id, f), HttpStatus.OK);
+	public ResponseEntity<FilmDTO> update(@PathVariable Long id, @RequestBody FilmDTO f) {
+		return new ResponseEntity<FilmDTO>(this.service.update(id, f), HttpStatus.OK);
 	}
 	
 	//Delete
@@ -61,38 +61,38 @@ public class FilmController {
 	
     //FindByTitle
     @GetMapping("/findByTitle/{title}")
-    public ResponseEntity<List<Film>> findByTitle(@PathVariable String title) {
-    	return new ResponseEntity<List<Film>>(service.findByTitle(title), HttpStatus.OK);
+    public ResponseEntity<List<FilmDTO>> findByTitle(@PathVariable String title) {
+    	return new ResponseEntity<List<FilmDTO>>(service.findByTitle(title), HttpStatus.OK);
     }
 	
 	//FindByGenre
     @GetMapping("/findByGenre/{genre}")
-    public ResponseEntity<List<Film>> findByGenre(@PathVariable String genre) {
-    	return new ResponseEntity<List<Film>>(service.findByGenre(genre), HttpStatus.OK);
+    public ResponseEntity<List<FilmDTO>> findByGenre(@PathVariable String genre) {
+    	return new ResponseEntity<List<FilmDTO>>(service.findByGenre(genre), HttpStatus.OK);
     }
     
 	//FindByYear
     @GetMapping("/findByYear/{year}")
-    public ResponseEntity<List<Film>> findByYear(@PathVariable int year) {
-    	return new ResponseEntity<List<Film>>(service.findByYear(year), HttpStatus.OK);
+    public ResponseEntity<List<FilmDTO>> findByYear(@PathVariable int year) {
+    	return new ResponseEntity<List<FilmDTO>>(service.findByYear(year), HttpStatus.OK);
     }
     
 	//FindByYearRange
     @GetMapping("/findByYearRange/{year1}/{year2}")
-    public ResponseEntity<List<Film>> findByYearRange(@PathVariable int year1, @PathVariable int year2) {
-    	return new ResponseEntity<List<Film>>(service.findByYearRange(year1, year2), HttpStatus.OK);
+    public ResponseEntity<List<FilmDTO>> findByYearRange(@PathVariable int year1, @PathVariable int year2) {
+    	return new ResponseEntity<List<FilmDTO>>(service.findByYearRange(year1, year2), HttpStatus.OK);
     }
     
 	//FindByMinDuration
     @GetMapping("/findByMinDuration/{duration}")
-    public ResponseEntity<List<Film>> findByMinDuration(@PathVariable int duration) {
-    	return new ResponseEntity<List<Film>>(service.findByMinDuration(duration), HttpStatus.OK);
+    public ResponseEntity<List<FilmDTO>> findByMinDuration(@PathVariable int duration) {
+    	return new ResponseEntity<List<FilmDTO>>(service.findByMinDuration(duration), HttpStatus.OK);
     }
     
 	//FindByMaxDuration
     @GetMapping("/findByMaxDuration/{duration}")
-    public ResponseEntity<List<Film>> findByMaxDuration(@PathVariable int duration) {
-    	return new ResponseEntity<List<Film>>(service.findByMaxDuration(duration), HttpStatus.OK);
+    public ResponseEntity<List<FilmDTO>> findByMaxDuration(@PathVariable int duration) {
+    	return new ResponseEntity<List<FilmDTO>>(service.findByMaxDuration(duration), HttpStatus.OK);
     }
     
 } 

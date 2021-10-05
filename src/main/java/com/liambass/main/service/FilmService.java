@@ -1,13 +1,16 @@
 package com.liambass.main.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.liambass.main.repo.FilmRepo;
 
 import com.liambass.main.domain.Film;
+import com.liambass.main.dto.FilmDTO;
 import com.liambass.main.exceptions.IdNotFoundException;
 import com.liambass.main.exceptions.InvalidYearRangeException;
 import com.liambass.main.exceptions.NoMatchingRecordsException;
@@ -16,35 +19,49 @@ import com.liambass.main.exceptions.NoMatchingRecordsException;
 public class FilmService {
 
 	private FilmRepo repo;
+	private ModelMapper mapper;
 	
 	@Autowired
-	public FilmService(FilmRepo repo) {
+	public FilmService(FilmRepo repo, ModelMapper mapper) {
 		this.repo = repo;
+		this.mapper = mapper;
 	}
 	
+	public FilmDTO mapToDTO(Film f) {
+		return this.mapper.map(f,  FilmDTO.class);
+	}
+	
+	public Film mapFromDTO(FilmDTO f) {
+		return this.mapper.map(f,  Film.class);
+	}
+	
+	
 	//Create
-	public Film create(Film f) {
-		return this.repo.saveAndFlush(f);
+	public FilmDTO create(FilmDTO f) {
+		Film in = this.mapFromDTO(f);
+		Film saved = this.repo.saveAndFlush(in);
+		return this.mapToDTO(saved);
 	}
 	
 	//Read All
-	public List<Film> readAll() {
-		return this.repo.findAll();
+	public List<FilmDTO> readAll() {
+		return this.repo.findAll().stream().map(this::mapToDTO).collect(Collectors.toList());
 	}
 	
 	//Read by ID
-	public Film readOne(Long id) {
-		return this.repo.findById(id).orElseThrow(IdNotFoundException::new);
+	public FilmDTO readOne(Long id) {
+		return this.mapToDTO(this.repo.findById(id).orElseThrow(IdNotFoundException::new));
 	}
 	
 	//Update
-	public Film update(Long id, Film f) {
+	public FilmDTO update(Long id, FilmDTO f) {
+		Film up = this.mapFromDTO(f);
 		Film exists = this.repo.findById(id).orElseThrow(IdNotFoundException::new);
-		exists.setTitle(f.getTitle());
-		exists.setGenre(f.getGenre());
-		exists.setYear(f.getYear());
-		exists.setDuration(f.getDuration());
-		return this.repo.saveAndFlush(exists);
+		exists.setTitle(up.getTitle());
+		exists.setGenre(up.getGenre());
+		exists.setYear(up.getYear());
+		exists.setDuration(up.getDuration());
+		return this.mapToDTO(this.repo.saveAndFlush(exists));
 	}
 	
 	//Delete
@@ -57,59 +74,45 @@ public class FilmService {
 	}
 	
 	//FindByTitle
-	public List<Film> findByTitle(String title) {
+	public List<FilmDTO> findByTitle(String title) {
 		List<Film> list = this.repo.findByTitle(title);
-		if (list.isEmpty()) {
-			throw new NoMatchingRecordsException();
-		}
-		return list;
+		if (list.isEmpty()) throw new NoMatchingRecordsException();
+		return list.stream().map(this::mapToDTO).collect(Collectors.toList());
 	}
 	
 	//FindByGenre
-	public List<Film> findByGenre(String genre) {
+	public List<FilmDTO> findByGenre(String genre) {
 		List<Film> list = this.repo.findByGenre(genre);
-		if (list.isEmpty()) {
-			throw new NoMatchingRecordsException();
-		}
-		return list;
+		if (list.isEmpty()) throw new NoMatchingRecordsException();
+		return list.stream().map(this::mapToDTO).collect(Collectors.toList());
 	}
 	
 	//FindByYear
-	public List<Film> findByYear(int year) {
+	public List<FilmDTO> findByYear(int year) {
 		List<Film> list = this.repo.findByYear(year);
-		if (list.isEmpty()) {
-			throw new NoMatchingRecordsException();
-		}
-		return list;
+		if (list.isEmpty()) throw new NoMatchingRecordsException();
+		return list.stream().map(this::mapToDTO).collect(Collectors.toList());
 	}
 	
 	//FindByYearRange
-	public List<Film> findByYearRange(int year1, int year2) {
-		if (year1 > year2) {
-			throw new InvalidYearRangeException();
-		}
+	public List<FilmDTO> findByYearRange(int year1, int year2) {
+		if (year1 > year2) throw new InvalidYearRangeException();
 		List<Film> list = this.repo.findByYearRange(year1, year2);
-		if (list.isEmpty()) {
-			throw new NoMatchingRecordsException();
-		}
-		return list;
+		if (list.isEmpty()) throw new NoMatchingRecordsException();
+		return list.stream().map(this::mapToDTO).collect(Collectors.toList());
 	}
 	
 	//FindByMinDuration
-	public List<Film> findByMinDuration(int duration) {
+	public List<FilmDTO> findByMinDuration(int duration) {
 		List<Film> list = this.repo.findByMinDuration(duration);
-		if (list.isEmpty()) {
-			throw new NoMatchingRecordsException();
-		}
-		return list;
+		if (list.isEmpty()) throw new NoMatchingRecordsException();
+		return list.stream().map(this::mapToDTO).collect(Collectors.toList());
 	}
 	
 	//FindByMaxDuration
-	public List<Film> findByMaxDuration(int duration) {
+	public List<FilmDTO> findByMaxDuration(int duration) {
 		List<Film> list = this.repo.findByMaxDuration(duration);
-		if (list.isEmpty()) {
-			throw new NoMatchingRecordsException();
-		}
-		return list;
+		if (list.isEmpty()) throw new NoMatchingRecordsException();
+		return list.stream().map(this::mapToDTO).collect(Collectors.toList());
 	}
 }
