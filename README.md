@@ -1,10 +1,11 @@
 ## Versions:
 The first merge from the dev branch to main included a v1.0 jar build. Along with the documentation added in the second push to main this makes the minimum viable product of the project, meeting all points of the deliverables checklist.
 
-The next merge to main delivers build v1.1 with all necessary documentation. This build adds the stretch goal of custom queries.
+The next merge to main delivers build v1.1 with all necessary documentation. This build adds the stretch goal of custom queries. Usage of these can be seen in the "API call examples" section.
 
-The next merge to main delivers build v1.2 with all necessary documentation. This build adds the stretch goal of custom exceptions.
+The next merge to main delivers build v1.2 with all necessary documentation. This build adds the stretch goal of custom exceptions, this does not change the usage of the application, but gives the user more useful error messages when they make bad requests.
  
+The next merge, anticipated to be the final one to main, delivers build v1.3 with all necessary documentation. This build adds a date transfer object, functionally this version is identical to the last but the implementation of a DTO allows future-proofing for the case where the entity contains sensitive data.
 
 --------------
 
@@ -36,7 +37,13 @@ Overall I expected the challenge to go fairly smoothly as generally I have gaine
 
 ## What went well? What didn't?
 
-As anticipated, I found that the project went well. I wasn't entirely confident in crafting good user stories but ended up happy enough with what I achieved in that regard. I also had a little trouble with the jar build process but a quick bit of research cleared that up completely. 
+As anticipated, I found that the project went well on the whole. 
+
+I wasn't entirely confident in crafting good user stories but ended up happy enough with what I achieved in that regard. 
+
+I also had a little trouble with the jar build process but a quick bit of research cleared that up completely. 
+
+I was stuck for a short while on testing after implementing a DTO, I got around it by changing how I was mocking returns, but this solution felt rather hacky to me so after a little more research I discovered that it was all due to a missing equals() in my DTO. 
 
 --------------
 
@@ -45,7 +52,8 @@ As anticipated, I found that the project went well. I wasn't entirely confident 
 * More attributes held by the database
 * ~~Custom queries~~ Implemented in v1.1
 * ~~Custom exceptions~~ Implemented in v1.2
-* Implementation of Data Transfer Objects
+* ~~Implementation of Data Transfer Objects~~ Implemented in v1.3
+* Front end
 
 --------------
  
@@ -88,17 +96,17 @@ Find films by maximum duration (requires v1.1+)
 --------------
 
 ## Test Results
-Service layer unit test v1.2
-<img src="https://user-images.githubusercontent.com/19336480/135895553-47779e8a-acd2-4308-95a2-2b70f45c8e13.png" width="90%"></img> 
+Service layer unit test v1.3
+<img src="https://user-images.githubusercontent.com/19336480/136013284-bfaf5530-9aae-41a7-bccd-2771f4080a85.png" width="90%"></img>
 
-Controller layer unit test v1.2
-<img src="https://user-images.githubusercontent.com/19336480/135895577-91392c97-4d6c-4a49-9c6c-605043d2dfea.png" width="90%"></img> 
+Controller layer unit test v1.3
+<img src="https://user-images.githubusercontent.com/19336480/136013295-831ad172-05cb-47f4-b4f1-9063c94caa05.png" width="90%"></img> 
 
-Integration test v1.2 
-<img src="https://user-images.githubusercontent.com/19336480/135895586-1be495b6-618c-4a3e-8efb-3692937366ba.png" width="90%"></img> 
+Integration test v1.3 
+<img src="https://user-images.githubusercontent.com/19336480/136013311-2c610b57-585d-4f7b-947a-6e429ad908e4.png" width="90%"></img>  
 
-Full test suite v1.2
-<img src="https://user-images.githubusercontent.com/19336480/135895595-62bc0f4d-a4d9-4589-8581-c404706c4240.png" width="90%"></img> 
+Full test suite v1.3
+<img src="https://user-images.githubusercontent.com/19336480/136013321-4b4bcde0-73d8-482a-91d1-a27014c59faf.png" width="90%"></img>
 
 Test results for previous versions can be found in the documentation folder.
 
