@@ -23,6 +23,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liambass.main.domain.Film;
+import com.liambass.main.dto.FilmDTO;
 import com.liambass.main.exceptions.IdNotFoundException;
 import com.liambass.main.exceptions.InvalidYearRangeException;
 import com.liambass.main.exceptions.NoMatchingRecordsException;
@@ -40,16 +41,16 @@ public class FilmControllerIntegrationTest {
 	@Autowired
 	private ObjectMapper mapper;
 	
-	private Film f1 = new Film(1L, "Test Film 1", "Genre", 2000, 90);
-	private Film f2 = new Film(2L, "Test Film 2", "Genre1", 2000, 120);
-	private Film f3 = new Film(3L, "Test Film 3", "Genre1", 2001, 99);
-	private List<Film> fl = List.of(f1, f2, f3);
+	private FilmDTO f1 = new FilmDTO(1L, "Test Film 1", "Genre", 2000, 90);
+	private FilmDTO f2 = new FilmDTO(2L, "Test Film 2", "Genre1", 2000, 120);
+	private FilmDTO f3 = new FilmDTO(3L, "Test Film 3", "Genre1", 2001, 99);
+	private List<FilmDTO> fl = List.of(f1, f2, f3);
 	
 	
 	@Test
 	public void createTest() throws Exception {
-		Film fIn = new Film("New", "Genre", 2020, 20);
-		Film fOut = new Film(4L, "New", "Genre", 2020, 20);
+		FilmDTO fIn = new FilmDTO("New", "Genre", 2020, 20);
+		FilmDTO fOut = new FilmDTO(4L, "New", "Genre", 2020, 20);
 		String fInAsJSON = this.mapper.writeValueAsString(fIn);
 		String fOutAsJSON = this.mapper.writeValueAsString(fOut);
 		
@@ -87,8 +88,8 @@ public class FilmControllerIntegrationTest {
 	
 	@Test
 	public void updateTest() throws Exception {
-		Film fIn = new Film("New", "Genre", 2020, 20);
-		Film f1Up = new Film(1L, "New", "Genre", 2020, 20);
+		FilmDTO fIn = new FilmDTO("New", "Genre", 2020, 20);
+		FilmDTO f1Up = new FilmDTO(1L, "New", "Genre", 2020, 20);
 		String fInAsJSON = this.mapper.writeValueAsString(fIn);
 		String f1UpAsJSON = this.mapper.writeValueAsString(f1Up);
 		
@@ -140,7 +141,7 @@ public class FilmControllerIntegrationTest {
 	
 	@Test
 	public void findByGenreTest() throws Exception {
-		List<Film> flGenre = List.of(f2, f3);
+		List<FilmDTO> flGenre = List.of(f2, f3);
 		String flGenreAsJSON = this.mapper.writeValueAsString(flGenre);
 		
 		mvc.perform(get("/films/findByGenre/Genre1"))
@@ -156,7 +157,7 @@ public class FilmControllerIntegrationTest {
 	
 	@Test
 	public void findByYearTest() throws Exception {
-		List<Film> flYear = List.of(f1, f2);
+		List<FilmDTO> flYear = List.of(f1, f2);
 		String flYearAsJSON = this.mapper.writeValueAsString(flYear);
 		
 		mvc.perform(get("/films/findByYear/2000"))
