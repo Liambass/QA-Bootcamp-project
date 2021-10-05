@@ -20,7 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.liambass.main.domain.Film;
+import com.liambass.main.dto.FilmDTO;
 import com.liambass.main.service.FilmService;
 
 @RunWith(SpringRunner.class)
@@ -36,15 +36,15 @@ public class FilmControllerUnitTest {
 	@MockBean
 	private FilmService service;
 	
-	private Film f = new Film("Title", "Genre", 2021, 100);
-	private List<Film> fl = List.of(f);
+	private FilmDTO f = new FilmDTO("Title", "Genre", 2021, 100);
+	private List<FilmDTO> fl = List.of(f);
 	private Long id = 1L;
 	
 	@Test
 	public void createTest() throws Exception {
 		String fAsJSON = this.mapper.writeValueAsString(f);
 		Mockito.when(this.service.create(f)).thenReturn(f);
-		
+		System.out.println(fAsJSON);
 		mvc.perform(post("/films/create")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(fAsJSON))

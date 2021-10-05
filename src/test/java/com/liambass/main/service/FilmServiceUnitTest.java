@@ -12,8 +12,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.modelmapper.ModelMapper;
 
 import com.liambass.main.domain.Film;
+import com.liambass.main.dto.FilmDTO;
 import com.liambass.main.exceptions.IdNotFoundException;
 import com.liambass.main.exceptions.InvalidYearRangeException;
 import com.liambass.main.exceptions.NoMatchingRecordsException;
@@ -27,29 +29,37 @@ public class FilmServiceUnitTest {
 	
 	@Mock
 	private FilmRepo repo;
+	@Mock
+	private ModelMapper mapper;
 	
 	private Film f = new Film("Title", "Genre", 2021, 100);
+	private FilmDTO fd = new FilmDTO("Title", "Genre", 2021, 100);
 	private List<Film> fl = List.of(f);
+	private List<FilmDTO> fld = List.of(fd);
 	private Optional<Film> of = Optional.of(f);
 	private Long id = 1L;
 	private List<Film> empty = Collections.emptyList();
 	
 	@Test
 	public void createTest() {
+		Mockito.when(this.mapper.map(fd, Film.class)).thenReturn(f);
 		Mockito.when(this.repo.saveAndFlush(f)).thenReturn(f);
-		assertEquals(f, this.service.create(f));
+		Mockito.when(this.mapper.map(f, FilmDTO.class)).thenReturn(fd);
+		assertEquals(fd, this.service.create(fd));
 	}
 	
 	@Test
 	public void readAllTest() {
 		Mockito.when(this.repo.findAll()).thenReturn(fl);
-		assertEquals(fl, this.service.readAll());
+		Mockito.when(this.mapper.map(f, FilmDTO.class)).thenReturn(fd);
+		assertEquals(fld, this.service.readAll());
 	}
 	
 	@Test
 	public void readOneTest() {
 		Mockito.when(this.repo.findById(id)).thenReturn(of);
-		assertEquals(f, this.service.readOne(id));
+		Mockito.when(this.mapper.map(f, FilmDTO.class)).thenReturn(fd);
+		assertEquals(fd, this.service.readOne(id));
 	}
 	
 	@Test(expected = IdNotFoundException.class)
@@ -60,15 +70,17 @@ public class FilmServiceUnitTest {
 	
 	@Test
 	public void updateTest() {
+		Mockito.when(this.mapper.map(fd, Film.class)).thenReturn(f);
 		Mockito.when(this.repo.findById(id)).thenReturn(of);
 		Mockito.when(this.repo.saveAndFlush(f)).thenReturn(f);
-		assertEquals(f, this.service.update(id, f));
+		Mockito.when(this.mapper.map(f, FilmDTO.class)).thenReturn(fd);
+		assertEquals(fd, this.service.update(id, fd));
 	}
 	
 	@Test(expected = IdNotFoundException.class)
 	public void updateFailTest() {
 		Mockito.when(this.repo.findById(id)).thenReturn(Optional.empty());
-		this.service.update(id, f);
+		this.service.update(id, fd);
 	}	
 		
 	@Test
@@ -86,7 +98,8 @@ public class FilmServiceUnitTest {
 	@Test
 	public void findByTitleTest() {
 		Mockito.when(this.repo.findByTitle("X")).thenReturn(fl);
-		assertEquals(fl, this.service.findByTitle("X"));
+		Mockito.when(this.mapper.map(f, FilmDTO.class)).thenReturn(fd);
+		assertEquals(fld, this.service.findByTitle("X"));
 	}
 	
 	@Test(expected = NoMatchingRecordsException.class)
@@ -98,7 +111,8 @@ public class FilmServiceUnitTest {
 	@Test
 	public void findByGenreTest() {
 		Mockito.when(this.repo.findByGenre("X")).thenReturn(fl);
-		assertEquals(fl, this.service.findByGenre("X"));
+		Mockito.when(this.mapper.map(f, FilmDTO.class)).thenReturn(fd);
+		assertEquals(fld, this.service.findByGenre("X"));
 	}
 	
 	@Test(expected = NoMatchingRecordsException.class)
@@ -110,7 +124,8 @@ public class FilmServiceUnitTest {
 	@Test
 	public void findByYearTest() {
 		Mockito.when(this.repo.findByYear(2000)).thenReturn(fl);
-		assertEquals(fl, this.service.findByYear(2000));
+		Mockito.when(this.mapper.map(f, FilmDTO.class)).thenReturn(fd);
+		assertEquals(fld, this.service.findByYear(2000));
 	}
 	
 	@Test(expected = NoMatchingRecordsException.class)
@@ -122,7 +137,8 @@ public class FilmServiceUnitTest {
 	@Test
 	public void findByYearRangeTest() {
 		Mockito.when(this.repo.findByYearRange(2000, 2020)).thenReturn(fl);
-		assertEquals(fl, this.service.findByYearRange(2000, 2020));
+		Mockito.when(this.mapper.map(f, FilmDTO.class)).thenReturn(fd);
+		assertEquals(fld, this.service.findByYearRange(2000, 2020));
 	}
 	
 	@Test(expected = NoMatchingRecordsException.class)
@@ -140,7 +156,8 @@ public class FilmServiceUnitTest {
 	@Test
 	public void findByMinDurationTest() {
 		Mockito.when(this.repo.findByMinDuration(100)).thenReturn(fl);
-		assertEquals(fl, this.service.findByMinDuration(100));
+		Mockito.when(this.mapper.map(f, FilmDTO.class)).thenReturn(fd);
+		assertEquals(fld, this.service.findByMinDuration(100));
 	}
 	
 	@Test(expected = NoMatchingRecordsException.class)
@@ -152,7 +169,8 @@ public class FilmServiceUnitTest {
 	@Test
 	public void findByMaxDurationTest() {
 		Mockito.when(this.repo.findByMaxDuration(100)).thenReturn(fl);
-		assertEquals(fl, this.service.findByMaxDuration(100));
+		Mockito.when(this.mapper.map(f, FilmDTO.class)).thenReturn(fd);
+		assertEquals(fld, this.service.findByMaxDuration(100));
 	}
 	
 	@Test(expected = NoMatchingRecordsException.class)
@@ -160,4 +178,4 @@ public class FilmServiceUnitTest {
 		Mockito.when(this.repo.findByMaxDuration(100)).thenReturn(empty);
 		this.service.findByMaxDuration(100);
 	}
-} 
+}  
