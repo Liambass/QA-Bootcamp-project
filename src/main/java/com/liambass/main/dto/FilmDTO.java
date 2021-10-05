@@ -1,5 +1,7 @@
 package com.liambass.main.dto;
 
+import java.util.Objects;
+
 public class FilmDTO {
 
 	private Long id;
@@ -9,6 +11,15 @@ public class FilmDTO {
 	private int duration;
 
 	public FilmDTO(String title, String genre, int year, int duration) {
+		this.title = title;
+		this.genre = genre;
+		this.year = year;
+		this.duration = duration;
+	}
+
+	public FilmDTO(Long id, String title, String genre, int year, int duration) {
+		super();
+		this.id = id;
 		this.title = title;
 		this.genre = genre;
 		this.year = year;
@@ -56,6 +67,24 @@ public class FilmDTO {
 
 	public void setDuration(int duration) {
 		this.duration = duration;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(duration, genre, id, title, year);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FilmDTO other = (FilmDTO) obj;
+		return duration == other.duration && Objects.equals(genre, other.genre) && Objects.equals(id, other.id)
+				&& Objects.equals(title, other.title) && year == other.year;
 	}
 
 }
