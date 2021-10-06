@@ -9,6 +9,13 @@ The next merge, anticipated to be the final one to main, delivers build v1.3 wit
 
 --------------
 
+## Experimental branch (frontend)
+Due to finishing far ahead of schedule my trainer supplied me with a front end for a similar project that he had written to see if I could adapt it for use in mine. 
+
+For transparency, the original front end files have been supplied in the "Documentation" folder.
+
+--------------
+
 ## Usage 
 
 This application is intended for storing and manipulating data about films in a database.
