@@ -7,6 +7,14 @@ The next merge to main delivers build v1.2 with all necessary documentation. Thi
  
 The next merge, anticipated to be the final one to main, delivers build v1.3 with all necessary documentation. This build adds a date transfer object, functionally this version is identical to the last but the implementation of a DTO allows future-proofing for the case where the entity contains sensitive data.
 
+<br>
+
+#### Experimental branches:
+
+After achieving many of the stretch goals with lots of time to spare, I was provided with a front-end from a similar project to see if I could adapt it to work with my application, this work, including working builds can be found on the [Dev branch](https://github.com/Liambass/QA-Bootcamp-project/tree/dev). 
+
+Next I intend to add another entity (with a relationship to my current one) to my application and work towards implementing that all the way through to the frontend. I do not  anticipate completely finishing this before the deadline and therefore do not expect to merge it back onto dev, any progress made can be found on the [anotherEntity branch](https://github.com/Liambass/QA-Bootcamp-project/tree/anotherEntity). 
+
 --------------
 
 ## Usage 
