@@ -135,3 +135,11 @@ Test results for previous versions can be found in the documentation folder.
 
 Evidence of persistent database
 <img src="https://user-images.githubusercontent.com/19336480/135731282-13c7755b-0075-467e-9c77-78585dfc770d.png" width="90%"></img> 
+
+--------------
+
+## Front-end
+
+<img src="https://user-images.githubusercontent.com/19336480/136417860-1c613f84-b0d8-4671-a2eb-29057aa814a8.png" width="90%">
+</img> <img src="https://user-images.githubusercontent.com/19336480/136417866-10737ac0-99ca-4a8e-82cd-a658ebe3462b.png" width="90%">
+</img> <img src="https://user-images.githubusercontent.com/19336480/136417877-28a4d0e9-c653-4ee6-9046-4e0824fb9f3d.png" width="90%"></img> 
