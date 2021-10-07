@@ -25,12 +25,133 @@ const setup = () => {
 const getAll = () => {
     axios.get(`${ADDR}:${location.port}/films/readAll`)
         .then((resp) => {
-            RESULTS_DIV.innerHTML = "";
+            RESULTS_DIV.innerHTML = "<h5>All Films</h1>";
+            refreshButton();
             const RESULTS = resp.data;
             for (let result of RESULTS) {
                 printResult(result);
             }
-        }).catch((err) => console.error(err))
+        }).catch((err) => alert(err))
+}
+
+const titleSearch = () => {
+    const SEARCH_FORM = document.forms["searchForm"];
+    if (!validateSearch([SEARCH_FORM["title"].value])) {
+        return;
+    }
+
+    $("#search-modal").modal("hide");
+    axios.get(`${ADDR}:${location.port}/films/findByTitle/${SEARCH_FORM["title"].value}`)
+    .then((resp) => {
+        RESULTS_DIV.innerHTML = "<h5>Search Results</h1>";
+        backButton();
+        const RESULTS = resp.data;
+        for (let result of RESULTS) {
+            printResult(result);
+        }
+    }).catch((err) => {
+        if (err.request.status == 404){
+            alert(err.response.data.message);
+        } else {
+            alert(err);
+        }
+    })
+}
+
+const genreSearch = () => {
+    const SEARCH_FORM = document.forms["searchForm"];
+    if (!validateSearch([SEARCH_FORM["genre"].value])) {
+        return;
+    }
+    
+    $("#search-modal").modal("hide");
+    axios.get(`${ADDR}:${location.port}/films/findByGenre/${SEARCH_FORM["genre"].value}`)
+    .then((resp) => {
+        RESULTS_DIV.innerHTML = "<h5>Search Results</h1>";
+        backButton();
+        const RESULTS = resp.data;
+        for (let result of RESULTS) {
+            printResult(result);
+        }
+    }).catch((err) => {
+        if (err.request.status == 404){
+            alert(err.response.data.message);
+        } else {
+            alert(err);
+        }
+    })
+}
+
+const yearSearch = () => {
+    const SEARCH_FORM = document.forms["searchForm"];
+    if (!validateSearch([SEARCH_FORM["year"].value, SEARCH_FORM["year2"].value])) {
+        return;
+    }
+
+    $("#search-modal").modal("hide");
+    axios.get(`${ADDR}:${location.port}/films/findByYearRange/${SEARCH_FORM["year"].value}/${SEARCH_FORM["year2"].value}`)
+    .then((resp) => {
+        RESULTS_DIV.innerHTML = "<h5>Search Results</h1>";
+        backButton();
+        const RESULTS = resp.data;
+        for (let result of RESULTS) {
+            printResult(result);
+        }
+    }).catch((err) => {
+        if (err.request.status == 404 || err.request.status == 400){
+            alert(err.response.data.message);
+        } else {
+            alert(err);
+        }
+    })
+}
+
+const minSearch = () => {
+    const SEARCH_FORM = document.forms["searchForm"];
+    if (!validateSearch([SEARCH_FORM["duration"].value])) {
+        return;
+    }
+
+    $("#search-modal").modal("hide");
+    axios.get(`${ADDR}:${location.port}/films/findByMinDuration/${SEARCH_FORM["duration"].value}`)
+    .then((resp) => {
+        RESULTS_DIV.innerHTML = "<h5>Search Results</h1>";
+        backButton();
+        const RESULTS = resp.data;
+        for (let result of RESULTS) {
+            printResult(result);
+        }
+    }).catch((err) => {
+        if (err.request.status == 404){
+            alert(err.response.data.message);
+        } else {
+            alert(err);
+        }
+    })
+}
+
+const maxSearch = () => {
+    const SEARCH_FORM = document.forms["searchForm"];
+    if (!validateSearch([SEARCH_FORM["duration"].value])) {
+        return;
+    }
+
+    $("#search-modal").modal("hide");
+    axios.get(`${ADDR}:${location.port}/films/findByMaxDuration/${SEARCH_FORM["duration"].value}`)
+    .then((resp) => {
+        RESULTS_DIV.innerHTML = "<h5>Search Results</h1>";
+        backButton();
+        const RESULTS = resp.data;
+        for (let result of RESULTS) {
+            printResult(result);
+        }
+    }).catch((err) => {
+        if (err.request.status == 404){
+            alert(err.response.data.message);
+        } else {
+            alert(err);
+        }
+    })
 }
 
 // Post request
@@ -85,13 +206,16 @@ const update = () => {
     // Request
     axios.put(`${ADDR}:${location.port}/films/update/${EDIT_FORM["entry-id"].value}`, obj)
         .then((resp) => {
-            // statusMsg(true);
             $("#edit-modal").modal("hide");
             getAll();
         }).catch((err) => {
-            console.error(err);
-            // statusMsg(false);
-        })
+            if (err.request.status == 404){
+                alert("Film no longer in database");
+                getAll();
+            } else {
+                alert(err);
+            }
+        });
 }
 
 // Delete request
@@ -100,7 +224,12 @@ const del = (id) => {
         .then((resp) => {
             getAll();
         }).catch((err) => {
-            alert(err);
+            if (err.request.status == 404){
+                alert("Film no longer in database");
+                getAll();
+            } else {
+                alert(err);
+            }
         })
 }
 
@@ -161,6 +290,26 @@ const printResult = (result) => {
     RESULTS_DIV.appendChild(ENTRY_DIV);
 }
 
+const backButton = () => {
+    const BACK = document.createElement("button");
+    BACK.type = "button";
+    BACK.textContent = "BACK";
+    BACK.setAttribute("class", "btn btn-sm btn-primary edit-btn");
+    BACK.setAttribute("onClick", "getAll()");
+
+    RESULTS_DIV.appendChild(BACK);
+}
+
+const refreshButton = () => {
+    const BACK = document.createElement("button");
+    BACK.type = "button";
+    BACK.textContent = "Refresh";
+    BACK.setAttribute("class", "btn btn-sm btn-primary edit-btn");
+    BACK.setAttribute("onClick", "getAll()");
+
+    RESULTS_DIV.appendChild(BACK);
+}
+
 const validateForm = (type) => {
     const CREATE_FORM = document.forms[`${type}Form`];
     if (CREATE_FORM["title"].value == "" || CREATE_FORM["genre"].value == "" || CREATE_FORM["year"].value == "" || CREATE_FORM["duration"].value == "") {
@@ -170,11 +319,19 @@ const validateForm = (type) => {
     return true;
 }
 
+const validateSearch = (array) => {
+    if (array.indexOf("") != -1) {
+        alert("Empty search field!");
+        return false;
+    }
+    return true;
+}
+
 const openEdit = (id) => {
     // Show modal and configure date field
     $("#edit-modal").modal("show");
     datepickerSetup();
-
+    const modal1 = this;
     // Get the current values for selected entry
     axios.get(`${ADDR}:${location.port}/films/readOne/${id}`)
         .then((resp) => {
@@ -186,7 +343,21 @@ const openEdit = (id) => {
             EDIT_FORM["year"].value = ENTRY.year;
             EDIT_FORM["duration"].value = ENTRY.duration;
             EDIT_FORM["entry-id"].value = ENTRY.id;
-        }).catch((err) => console.error(err))
+        }).catch((err) => {
+            if (err.request.status == 404){
+                alert("Film no longer in database");
+                getAll();
+            } else {
+                alert(err);
+            }
+        });
+    
+}
+
+const openSearch = () => {
+    $("#search-modal").modal("show");
+    document.forms["searchForm"].reset();
+    datepickerSetup();
 }
 
 const datepickerSetup = () => {

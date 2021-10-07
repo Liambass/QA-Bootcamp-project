@@ -88,6 +88,16 @@ footer {
     width: 48.86%;
 }
 
+.search-btns {
+    margin-top: 0.5em;
+    width: 100%;
+}
+
+.resetform-btns {
+    margin-top: 0.5em;
+    width: 100%;
+}
+
 .form-floating {
     margin-top: 0.5em;
 }

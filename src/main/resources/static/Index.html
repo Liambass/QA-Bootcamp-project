@@ -63,7 +63,9 @@
                 <div>
                     <button id="create-btn" class="btn btn-sm btn-primary form-btns" type="button"
                         onClick="create()">Create</button>
-                    <button id="reset-btn" class="btn btn-sm btn-danger form-btns" type="reset">Reset</button>
+                    <button id="search-btn" class="btn btn-sm btn-primary form-btns" type="button"
+                        onClick="openSearch()">Search</button>
+                    <button id="reset-btn" class="btn btn-sm btn-danger resetform-btns" type="reset">Reset Form</button>
                 </div>
             </form>
         </div>
@@ -112,6 +114,52 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" onClick="update()">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="search-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="search-modal-label">Advanced Search</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="form-div">
+                            <form name="searchForm">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control title-input" id="floatingInput" placeholder="Title"
+                                        autocomplete="off" name="title">
+                                    <label for="floatingInput">Title</label>
+                                    <button type="button" class="search-btns btn-primary" onClick="titleSearch()">Search by Title</button>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control genre-input" id="floatingInput" placeholder="Genre"
+                                        autocomplete="off" name="genre">
+                                    <label for="floatingPassword">Genre</label>
+                                    <button type="button" class="search-btns btn-primary" onClick="genreSearch()">Search by Genre</button>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control year-input" id="floatingInput" placeholder="Year"
+                                        autocomplete="off" name="year">
+                                    <label for="floatingPassword">Start of range</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control year-input" id="floatingInput" placeholder="Year2"
+                                        autocomplete="off" name="year2">
+                                    <label for="floatingPassword">End of Range</label>
+                                    <button type="button" class="search-btns btn-primary" onClick="yearSearch()">Search by Years (range)</button>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control duration-input" id="floatingInput" placeholder="Duration"
+                                        autocomplete="off" name="duration">
+                                    <label for="floatingPassword">Duration (minutes)</label>
+                                    <button type="button" class="search-btns btn-primary" onClick="minSearch()">Search by Min Duration</button>
+                                    <button type="button" class="search-btns btn-primary" onClick="maxSearch()">Search by Max Duration</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
