@@ -9,6 +9,22 @@ The next merge, anticipated to be the final one to main, delivers build v1.3 wit
 
 --------------
 
+## Experimental branch (frontend)
+Due to finishing far ahead of schedule my trainer supplied me with a front-end for a similar project that he had written to see if I could adapt it for use in mine. 
+
+For transparency, the original front-end files have been supplied in the "Documentation" folder.
+
+To adapt the supplied files I first made some very basic edits to the supplied HTML/JS such as changing headings and button names, and pointing API calls to the right address. Once these changes were manually tested we reached v1.4, it is not intended that the experimental branch will be merged to main working builds will however be merged with dev. 
+
+Once I had adapted basic CRUD functionality I implemented an "Search" button with brings up a form allowing the user to search by title, genre, year range, and min/max duration. The results of these searches replace the list of all records (by design), so I then implemented a "Back" button to the search results which will reload the full list, I also and a heading to the full list along with a "Refresh" button.
+
+I then implemented some validation for the search to ensure that blank requests would no be sent. 
+
+Finally, before v1.5, I added some handling so that relevant exception messages from the back-end would be shown on the front-end. 
+
+
+--------------
+
 ## Usage 
 
 This application is intended for storing and manipulating data about films in a database.
@@ -16,6 +32,11 @@ This application is intended for storing and manipulating data about films in a 
 The database should be called "film_Collection" and should be on port 3306 (u/n: root, p/w: Root). 
 
 The application listens on port 9001, example API calls are shown below.
+
+<br>
+
+#### Experimental branch:
+The front-end is accessed at http://localhost:9001/index.html
 
 --------------
 
@@ -53,7 +74,7 @@ I was stuck for a short while on testing after implementing a DTO, I got around 
 * ~~Custom queries~~ Implemented in v1.1
 * ~~Custom exceptions~~ Implemented in v1.2
 * ~~Implementation of Data Transfer Objects~~ Implemented in v1.3
-* Front end
+* ~~Front-end~~ Implemented on experimental branch
 
 --------------
  
@@ -114,3 +135,11 @@ Test results for previous versions can be found in the documentation folder.
 
 Evidence of persistent database
 <img src="https://user-images.githubusercontent.com/19336480/135731282-13c7755b-0075-467e-9c77-78585dfc770d.png" width="90%"></img> 
+
+--------------
+
+## Front-end
+
+<img src="https://user-images.githubusercontent.com/19336480/136417860-1c613f84-b0d8-4671-a2eb-29057aa814a8.png" width="90%">
+</img> <img src="https://user-images.githubusercontent.com/19336480/136417866-10737ac0-99ca-4a8e-82cd-a658ebe3462b.png" width="90%">
+</img> <img src="https://user-images.githubusercontent.com/19336480/136417877-28a4d0e9-c653-4ee6-9046-4e0824fb9f3d.png" width="90%"></img> 
