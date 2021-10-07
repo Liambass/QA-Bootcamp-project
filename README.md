@@ -13,7 +13,7 @@ The next merge, anticipated to be the final one to main, delivers build v1.3 wit
 
 After achieving many of the stretch goals with lots of time to spare, I was provided with a front-end from a similar project to see if I could adapt it to work with my application, this work, including working builds can be found on the [Dev branch](https://github.com/Liambass/QA-Bootcamp-project/tree/dev). 
 
-Next I intend to add another entity (with a relationship to my current one) to my application and work towards implementing that all the way through to the frontend. I do not  anticipate completely finishing this before the deadline and therefore do not expect to merge it back onto dev, any progress made can be found on the [anotherEntity branch](https://github.com/Liambass/QA-Bootcamp-project/tree/anotherEntity). 
+Next I intend to add another entity (with a relationship to my current one) to my application and work towards implementing that all the way through to the frontend, this branch will also include a ERD in the documentation folder. I do not  anticipate completely finishing this before the deadline and therefore do not expect to merge it back onto dev, any progress made can be found on the [anotherEntity branch](https://github.com/Liambass/QA-Bootcamp-project/tree/anotherEntity). 
 
 --------------
 
