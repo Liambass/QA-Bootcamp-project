@@ -81,6 +81,11 @@ public class Film {
 
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(duration, genre, title, year);
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -89,8 +94,8 @@ public class Film {
 		if (getClass() != obj.getClass())
 			return false;
 		Film other = (Film) obj;
-		return duration == other.duration && Objects.equals(genre, other.genre) && Objects.equals(id, other.id)
-				&& Objects.equals(title, other.title) && year == other.year;
+		return duration == other.duration && Objects.equals(genre, other.genre) &&
+				Objects.equals(title, other.title) && year == other.year;
 	}
 	
 }

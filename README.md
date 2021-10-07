@@ -105,16 +105,19 @@ Find films by maximum duration (requires v1.1+)
 
 ## Test Results
 Service layer unit test v1.3
-<img src="https://user-images.githubusercontent.com/19336480/136013284-bfaf5530-9aae-41a7-bccd-2771f4080a85.png" width="90%"></img>
+<img src="https://user-images.githubusercontent.com/19336480/136468974-c5408565-f2d9-4a39-90af-e70f28a8ece0.png" width="90%">
 
 Controller layer unit test v1.3
-<img src="https://user-images.githubusercontent.com/19336480/136013295-831ad172-05cb-47f4-b4f1-9063c94caa05.png" width="90%"></img> 
+</img> <img src="https://user-images.githubusercontent.com/19336480/136468990-0507e897-c513-46c5-a40d-d251c083be38.png" width="90%">
 
 Integration test v1.3 
-<img src="https://user-images.githubusercontent.com/19336480/136013311-2c610b57-585d-4f7b-947a-6e429ad908e4.png" width="90%"></img>  
+</img> <img src="https://user-images.githubusercontent.com/19336480/136469007-5c4e1f6a-d135-4d18-9a3e-d2affcc3b6f7.png" width="90%">
 
 Full test suite v1.3
-<img src="https://user-images.githubusercontent.com/19336480/136013321-4b4bcde0-73d8-482a-91d1-a27014c59faf.png" width="90%"></img>
+</img> <img src="https://user-images.githubusercontent.com/19336480/136469029-dab71483-a5d6-447f-b9d8-3ba098bff1b0.png" width="90%"></img> 
+
+POJO tests v1.3
+<img src="https://user-images.githubusercontent.com/19336480/136469304-f154e39a-3d1b-4e0b-bbb0-61911efc90fb.png" width="90%"></img> <img src="https://user-images.githubusercontent.com/19336480/136469309-f68d5a2a-ecb6-4c2c-8a3e-5b41611c9a17.png" width="90%"></img> 
 
 Test results for previous versions can be found in the documentation folder.
 
