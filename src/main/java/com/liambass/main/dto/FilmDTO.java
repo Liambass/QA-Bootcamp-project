@@ -1,6 +1,9 @@
 package com.liambass.main.dto;
 
+import java.util.List;
 import java.util.Objects;
+
+import com.liambass.main.domain.Booking;
 
 public class FilmDTO {
 
@@ -9,6 +12,7 @@ public class FilmDTO {
 	private String genre;
 	private int year;
 	private int duration;
+	private List<Booking> bookings;
 
 	public FilmDTO(String title, String genre, int year, int duration) {
 		this.title = title;
@@ -67,6 +71,14 @@ public class FilmDTO {
 
 	public void setDuration(int duration) {
 		this.duration = duration;
+	}
+
+	public List<Booking> getBookings() {
+		return bookings;
+	}
+
+	public void setBookings(List<Booking> bookings) {
+		this.bookings = bookings;
 	}
 
 	@Override

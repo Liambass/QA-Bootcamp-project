@@ -9,7 +9,9 @@ The next merge, anticipated to be the final one to main, delivers build v1.3 wit
 
 --------------
 
-## Experimental branch (frontend)
+## Experimental branches
+
+### (frontend)
 Due to finishing far ahead of schedule my trainer supplied me with a front-end for a similar project that he had written to see if I could adapt it for use in mine. 
 
 For transparency, the original front-end files have been supplied in the "Documentation" folder.
@@ -20,7 +22,16 @@ Once I had adapted basic CRUD functionality I implemented an "Search" button wit
 
 I then implemented some validation for the search to ensure that blank requests would no be sent. 
 
-Finally, before v1.5, I added some handling so that relevant exception messages from the back-end would be shown on the front-end. 
+Finally, before v1.5, I added some handling so that relevant exception messages from the back-end would be shown on the front-end.
+
+This work has been merged to the dev branch. 
+
+### (anotherEntity)
+After experimenting with the front-end it was suggested that I attempt to implement a second entity with some relation to the first. As my original entity held data about films I chose to make a new entity about bookings, whereby each booking would have a date, a time, and a reference to a film. Each booking would have one and only one film but a film can be part of multiple bookings.
+ 
+<img src="https://user-images.githubusercontent.com/19336480/136581053-84d73cca-cedd-4d3f-8368-be90ac877058.png" width="45%"></img>
+
+Currently the controller for this entity does not have full CRUD, only a "read all" that returns a list of bookings with the film_id replaced by the relevant title. This is achieved with a GET call to http://localhost:9001/booking/readAll . Build v1.6 represents the project at this point. 
 
 
 --------------
