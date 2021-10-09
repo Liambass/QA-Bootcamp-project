@@ -1,4 +1,4 @@
-package com.liambass.main.repo;
+package com.liambass.main.dto;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

@@ -3,17 +3,21 @@ package com.liambass.main.dto;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import com.liambass.main.domain.Film;
+
 public class BookingDTO {
 	
 	private Long id;
 	private LocalDate date;
 	private LocalTime time;
+	private Film film;
 	
-	public BookingDTO(Long id, LocalDate date, LocalTime time) {
+	public BookingDTO(Long id, LocalDate date, LocalTime time, Film film) {
 		super();
 		this.id = id;
 		this.date = date;
 		this.time = time;
+		this.film = film;
 	}
 
 	public BookingDTO() {
@@ -42,6 +46,14 @@ public class BookingDTO {
 
 	public void setTime(LocalTime time) {
 		this.time = time;
+	}
+
+	public Film getFilm() {
+		return film;
+	}
+
+	public void setFilm(Film film) {
+		this.film = film;
 	}
 	
 	
