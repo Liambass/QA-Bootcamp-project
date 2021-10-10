@@ -423,6 +423,8 @@ const validateSearch = (array) => {
 
 const openBook = (id) => {
     $("#book-modal").modal("show");
+    stddatepickerSetup();
+    //timepickersetup();
     const BOOK_FORM = document.forms["bookForm"];
 	axios.get(`${ADDR}:${location.port}/films/readOne/${id}`)
         .then((resp) => {
@@ -481,5 +483,11 @@ const datepickerSetup = () => {
         format: "yyyy",
         viewMode: "years",
         minViewMode: "years"
+    });
+}
+
+const stddatepickerSetup = () => {
+    $(".date-input").datepicker({
+        format: "yyyy-mm-dd"
     });
 }
