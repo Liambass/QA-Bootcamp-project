@@ -31,7 +31,9 @@ After experimenting with the front-end it was suggested that I attempt to implem
  
 <img src="https://user-images.githubusercontent.com/19336480/136581053-84d73cca-cedd-4d3f-8368-be90ac877058.png" width="45%"></img>
 
-Currently the controller for this entity does not have full CRUD, only a "read all" that returns a list of bookings with the film_id replaced by the relevant title. This is achieved with a GET call to http://localhost:9001/booking/readAll . Build v1.6 represents the project at this point. 
+~~Currently the controller for this entity does not have full CRUD, only a "read all" that returns a list of bookings with the film_id replaced by the relevant title. This is achieved with a GET call to http://localhost:9001/booking/readAll . Build v1.6 represents the project at this point.~~
+
+Build v1.7 adds the ability to make, view, and delete bookings from the front-end as shown at the bottom of this README. 
 
 
 --------------
@@ -151,6 +153,8 @@ Evidence of persistent database
 
 ## Front-end
 
-<img src="https://user-images.githubusercontent.com/19336480/136417860-1c613f84-b0d8-4671-a2eb-29057aa814a8.png" width="90%">
-</img> <img src="https://user-images.githubusercontent.com/19336480/136417866-10737ac0-99ca-4a8e-82cd-a658ebe3462b.png" width="90%">
-</img> <img src="https://user-images.githubusercontent.com/19336480/136417877-28a4d0e9-c653-4ee6-9046-4e0824fb9f3d.png" width="90%"></img> 
+<img src="https://user-images.githubusercontent.com/19336480/136417860-1c613f84-b0d8-4671-a2eb-29057aa814a8.png" width="90%"></img> 
+<img src="https://user-images.githubusercontent.com/19336480/136417866-10737ac0-99ca-4a8e-82cd-a658ebe3462b.png" width="90%"></img> 
+<img src="https://user-images.githubusercontent.com/19336480/136417877-28a4d0e9-c653-4ee6-9046-4e0824fb9f3d.png" width="90%"></img> 
+<img src="https://user-images.githubusercontent.com/19336480/136692755-b79342df-46df-4eeb-97dd-d06ad3548a98.png" width="90%"></img>
+<img src="https://user-images.githubusercontent.com/19336480/136692759-f7d88949-6072-446c-8cba-d734ed6d7c45.png" width="90%"></img> 
