@@ -5,6 +5,7 @@ const ADDR = "http://localhost";
 // Divs
 const RESULTS_DIV = document.querySelector("#results-div");
 const FORM_DIV = document.querySelector("#form-div");
+const BOOKINGS_DIV = document.querySelector("#bookings-div");
 
 // Buttons
 const CREATE_BTN = document.querySelector("#create-btn");
@@ -32,6 +33,18 @@ const getAll = () => {
                 printResult(result);
             }
         }).catch((err) => alert(err))
+}
+
+const allBookings = () => {
+    axios.get(`${ADDR}:${location.port}/booking/readAll`)
+    .then((resp) => {
+        BOOKINGS_DIV.innerHTML = "<h5>All Bookings</h1>";
+        const RESULTS = resp.data;
+        for (let result of RESULTS) {
+            printBookings(result);
+        }
+    }).catch((err) => alert(err))
+
 }
 
 const titleSearch = () => {
@@ -233,6 +246,20 @@ const del = (id) => {
         })
 }
 
+const delBooking = (id) => {
+    axios.delete(`${ADDR}:${location.port}/booking/delete/${id}`)
+        .then((resp) => {
+            allBookings();
+        }).catch((err) => {
+            if (err.request.status == 404){
+                alert("Booking no longer in database");
+                getAll();
+            } else {
+                alert(err);
+            }
+        })
+}
+
 const statusMsg = (bool) => {
     CREATE_BTN.setAttribute("disabled", "true");
     if (bool) {
@@ -288,6 +315,32 @@ const printResult = (result) => {
     ENTRY_DIV.appendChild(DEL);
     
     RESULTS_DIV.appendChild(ENTRY_DIV);
+}
+
+const printBookings = (result) => {
+    const ENTRY_DIV = document.createElement("div");
+    ENTRY_DIV.setAttribute("class", "entry-div");
+
+    const ENTRY = document.createElement("div");
+    ENTRY.setAttribute("class", "entry");
+
+    const VALUES = document.createElement("div");
+    VALUES.setAttribute("class", "entry-values");
+    VALUES.textContent = `${result.date} | ${result.time.slice(0, -3)} | ${result.title} `;
+    
+
+    const DEL = document.createElement("button");
+    DEL.type = "button";
+    DEL.textContent = "Delete";
+    DEL.id = `${result.id}`;
+    DEL.setAttribute("class", "btn btn-sm btn-danger del-btn");
+    DEL.setAttribute("onClick", "delBooking(this.id)");
+
+    ENTRY.appendChild(VALUES);
+    ENTRY_DIV.appendChild(ENTRY);
+    ENTRY_DIV.appendChild(DEL);
+    
+    BOOKINGS_DIV.appendChild(ENTRY_DIV);
 }
 
 const backButton = () => {
