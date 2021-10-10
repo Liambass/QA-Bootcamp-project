@@ -160,7 +160,13 @@ footer {
 
 .edit-btn {
     position: absolute;
-    right: 4.5em;
+    right: 4.2em;
+    top: 0;
+}
+
+.book-btn {
+    position: absolute;
+    right: 7.2em;
     top: 0;
 }
 

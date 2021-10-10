@@ -284,6 +284,7 @@ const statusMsg = (bool) => {
 }
 
 const printResult = (result) => {
+    console.log(result);
     const ENTRY_DIV = document.createElement("div");
     ENTRY_DIV.setAttribute("class", "entry-div");
 
@@ -294,6 +295,12 @@ const printResult = (result) => {
     VALUES.setAttribute("class", "entry-values");
     VALUES.textContent = `${result.title} | ${result.genre} | ${result.year} | ${result.duration} minutes`;
     
+    const BOOK = document.createElement("button");
+    BOOK.type = "button";
+    BOOK.textContent = "Book";
+    BOOK.id = `${result.id}`;
+    BOOK.setAttribute("class", "btn btn-sm btn-primary book-btn");
+    BOOK.setAttribute("onClick", "openBook(this.id)");
 
     const EDIT = document.createElement("button");
     EDIT.type = "button";
@@ -311,6 +318,7 @@ const printResult = (result) => {
 
     ENTRY.appendChild(VALUES);
     ENTRY_DIV.appendChild(ENTRY);
+	ENTRY_DIV.appendChild(BOOK);
     ENTRY_DIV.appendChild(EDIT);
     ENTRY_DIV.appendChild(DEL);
     
@@ -378,6 +386,10 @@ const validateSearch = (array) => {
         return false;
     }
     return true;
+}
+
+const openBook = (id) => {
+    $("#book-modal").modal("show");
 }
 
 const openEdit = (id) => {

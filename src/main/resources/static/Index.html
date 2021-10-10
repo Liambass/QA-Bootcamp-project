@@ -165,6 +165,43 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="book-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="book-modal-label">Make a booking</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="form-div">
+                            <form name="bookForm">
+                                <input type="hidden" name="filmid">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control date-input" id="floatingInput" placeholder="Date"
+                                        autocomplete="off" name="date">
+                                    <label for="floatingInput">Date</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control time-input" id="floatingInput" placeholder="Time"
+                                        autocomplete="off" name="Time">
+                                    <label for="floatingPassword">Time</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control title-input" id="floatingInput" placeholder="Title"
+                                        autocomplete="off" name="title">
+                                    <label for="floatingPassword">Title</label>
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onClick="makeBooking()">Make booking</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <footer>
         <div id="footerDivider" class="b-example-divider"></div>
