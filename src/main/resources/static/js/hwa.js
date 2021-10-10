@@ -199,6 +199,40 @@ const create = () => {
         })
 }
 
+const makeBooking = () => {
+    const BOOK_FORM = document.forms["bookForm"];
+    if (!validateSearch([BOOK_FORM["date"].value, BOOK_FORM["time"].value])) {
+        return;
+    }
+
+
+
+    let filmObj = {
+        "id": BOOK_FORM["film-id"].value,
+        "title": BOOK_FORM["title"].value,
+        "genre": BOOK_FORM["film-genre"].value,
+        "year": BOOK_FORM["film-year"].value,
+        "duration" : BOOK_FORM["film-duration"].value
+    }
+
+    let obj = {
+        "date": BOOK_FORM["date"].value,
+        "time": BOOK_FORM["time"].value,
+        "film": filmObj
+    };
+
+    console.log(obj);
+
+    axios.post(`${ADDR}:${location.port}/booking/create`, obj)
+        .then((resp) => {
+            statusMsg(true);
+            $("#book-modal").modal("hide");
+        }).catch((err) => {
+            console.error(err);
+            statusMsg(false);
+        })
+}
+
 // Put request
 const update = () => {
     // Validate the form
@@ -284,7 +318,6 @@ const statusMsg = (bool) => {
 }
 
 const printResult = (result) => {
-    console.log(result);
     const ENTRY_DIV = document.createElement("div");
     ENTRY_DIV.setAttribute("class", "entry-div");
 
@@ -390,6 +423,23 @@ const validateSearch = (array) => {
 
 const openBook = (id) => {
     $("#book-modal").modal("show");
+    const BOOK_FORM = document.forms["bookForm"];
+	axios.get(`${ADDR}:${location.port}/films/readOne/${id}`)
+        .then((resp) => {
+            const ENTRY = resp.data;
+			BOOK_FORM["title"].value = ENTRY.title;
+            BOOK_FORM["film-id"].value = ENTRY.id;
+            BOOK_FORM["film-genre"].value = ENTRY.genre;
+            BOOK_FORM["film-year"].value = ENTRY.year;
+            BOOK_FORM["film-duration"].value = ENTRY.duration;
+        }).catch((err) => {
+            if (err.request.status == 404){
+                alert("Film no longer in database");
+                getAll();
+            } else {
+                alert(err);
+            }
+        });
 }
 
 const openEdit = (id) => {

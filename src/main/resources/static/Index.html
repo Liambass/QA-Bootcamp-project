@@ -175,7 +175,10 @@
                     <div class="modal-body">
                         <div id="form-div">
                             <form name="bookForm">
-                                <input type="hidden" name="filmid">
+                                <input type="hidden" name="film-id">
+                                <input type="hidden" name="film-genre">
+                                <input type="hidden" name="film-year">
+                                <input type="hidden" name="film-duration">
                                 <div class="form-floating">
                                     <input type="text" class="form-control date-input" id="floatingInput" placeholder="Date"
                                         autocomplete="off" name="date">
@@ -183,7 +186,7 @@
                                 </div>
                                 <div class="form-floating">
                                     <input type="text" class="form-control time-input" id="floatingInput" placeholder="Time"
-                                        autocomplete="off" name="Time">
+                                        autocomplete="off" name="time">
                                     <label for="floatingPassword">Time</label>
                                 </div>
                                 <div class="form-floating">
@@ -191,7 +194,6 @@
                                         autocomplete="off" name="title">
                                     <label for="floatingPassword">Title</label>
                                 </div>
-                                
                             </form>
                         </div>
                     </div>
