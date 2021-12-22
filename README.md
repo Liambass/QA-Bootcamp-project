@@ -3,9 +3,9 @@ The first merge from the dev branch to main included a v1.0 jar build. Along wit
 
 The next merge to main delivers build v1.1 with all necessary documentation. This build adds the stretch goal of custom queries. Usage of these can be seen in the "API call examples" section.
 
-The next merge to main delivers build v1.2 with all necessary documentation. This build adds the stretch goal of custom exceptions, this does not change the usage of the application, but gives the user more useful error messages when they make bad requests.
+The next merge to main delivers build v1.2 with all necessary documentation. This build adds the stretch goal of custom exceptions, this does not change the usage of the application, but gives the user more useful error messages should they make bad requests.
  
-The next merge, anticipated to be the final one to main, delivers build v1.3 with all necessary documentation. This build adds a date transfer object, functionally this version is identical to the last but the implementation of a DTO allows future-proofing for the case where the entity contains sensitive data.
+The next merge, anticipated to be the final one to main, delivers build v1.3 with all necessary documentation. This build adds a data transfer object, functionally this version is identical to the last but the implementation of a DTO allows future-proofing for the case where the entity contains sensitive data.
 
 <br>
 
